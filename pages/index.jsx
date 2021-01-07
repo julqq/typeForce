@@ -59,7 +59,7 @@ export default function Home({ words }) {
 							<mark>{word}</mark>{" "}
 						</span>
 					) : (
-						<span>{word} </span>
+						<span key={index}>{word} </span>
 					)
 				)}
 			</div>
@@ -87,9 +87,11 @@ export default function Home({ words }) {
 		</>
 	);
 }
-Home.getInitialProps = async () => {
+
+export async function getStaticProps(context) {
 	const res = await fetch("http://localhost:3000/api/getWords");
 	const json = await res.json();
-
-	return { words: json };
-};
+	return {
+		props: { words: json },
+	};
+}
