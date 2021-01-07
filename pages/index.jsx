@@ -89,7 +89,7 @@ export default function Home({ words }) {
 }
 
 export async function getStaticProps(context) {
-	const res = await fetch("http://localhost:3000/api/getWords");
+	const res = await fetch("https://type-force.vercel.app/api/getWords");
 	const json = await res.json();
 	return {
 		props: { words: json },
